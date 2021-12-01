@@ -1,0 +1,185 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tap-gui
+  title: TAP GUI
+  description: Carvel Package shipping Backstage with TAP GUI plugins
+  annotations:
+    gitlab.com/project-slug: 'project-star/pstar-backstage-poc'
+  links:
+    - url: https://docs.google.com/document/d/1HZQiV_VUkmVzjh1CaGcf4DhAXLeFIUeaoUXrARWlgGI/edit
+      icon: docs
+      title: Plugin Guide
+    - url: https://confluence.eng.vmware.com/pages/viewpage.action?pageId=1030474639
+      icon: docs
+      title: Beta/GA Readiness
+    - url: https://jira.eng.vmware.com/projects/PSTAR
+      title: JIRA Project
+      icon: dashboard
+    - url: https://runway-ci.eng.vmware.com/teams/project-star/pipelines/pstar-backstage-poc
+      icon: dashboard
+      title: Concourse Pipeline
+    - url: https://vmware.slack.com/archives/C028W549JHX
+      icon: chat
+      title: Slack Channel
+spec:
+  type: package
+  lifecycle: beta
+  owner: tap-gui
+  system: tap
+  subcomponentOf: tap
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: demo-env
+  title: TAP GUI Demo Environment
+spec:
+  owner: tap-gui
+  domain: tap
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: demo-backstage
+  title: Backstage Server in Demo
+  description: |
+    Environment containing the latest stable build of TAP GUI. It's probably
+    what you're looking at right now!
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app=backstage'
+  links:
+    - url: https://via.vmw.com/pstar-demo
+      title: View the environment here
+    - url: https://vmware.slack.com/archives/C028W549JHX
+      icon: help
+      title: Report issues or ask for help on Slack
+    - url: https://gitlab.eng.vmware.com/project-star/calatrava-env/
+      icon: github
+      title: Terraform Config
+spec:
+  type: service
+  lifecycle: stable
+  owner: tap-gui
+  system: demo-env
+  dependsOn: ["Component:tap-gui"]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tanzu-java-web-app
+  title: Tanzu Java Web App
+  description: |
+    This is a demo workload showcasing the use of TAP's default supply chain and
+    it's a good opportunity to exercise some functionality relating to running
+    kubernetes clusters.
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-web-app'
+spec:
+  type: service
+  lifecycle: development
+  owner: tap-gui
+  system: demo-env
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: tap-gui
+  description: Tanzu Application Platform GUI team
+spec:
+  type: team
+  profile:
+    displayName: TAP GUI team
+    email: pstar@vmware.com
+  parent: tap-activation
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: zimina
+spec:
+  profile:
+    displayName: Andrei Zimin
+    email: zimina@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: abraundmeier
+spec:
+  profile:
+    displayName: Aaron Braundmeier
+    email: abraundmeier@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jklassen
+spec:
+  profile:
+    displayName: Jamie Klassen
+    email: jklassen@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: mstergianis
+spec:
+  profile:
+    displayName: Michael Stergianis
+    email: mstergianis@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: austinal
+spec:
+  profile:
+    displayName: Austina Lin
+    email: austinal@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dbravo
+spec:
+  profile:
+    displayName: Daniel Bravo
+    email: dbravo@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: dbesson
+spec:
+  profile:
+    displayName: Dimitry Besson
+    email: dbesson@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: gweresch
+spec:
+  profile:
+    displayName: Greg Weresch
+    email: gweresch@vmware.com
+  memberOf: [tap-gui]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: twanru
+spec:
+  profile:
+    displayName: Zoe Tian
+    email: twanru@vmware.com
+  memberOf: [tap-gui]
